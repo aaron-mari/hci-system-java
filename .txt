@@ -1,0 +1,14 @@
+ITEMS
+ - Product code
+ - Name
+ - Description
+ - Price
+ - Supplier
+ - Quantite
+
+Suppliers
+ - ID
+ - Name
+ - Contact
+
+
