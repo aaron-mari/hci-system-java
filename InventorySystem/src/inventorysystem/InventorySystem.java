@@ -15,7 +15,21 @@ public class InventorySystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //init database credentials
+        String USER, PASS;
+        String URL;
+        
+        LoginScreen login;
+        SystemForm system;
+        
+        //database credentials declared here
+        USER = "root";
+        PASS = "toor";
+        URL = "jdbc:mysql://localhost:3306/inventory_system";
+        
+        login = new LoginScreen(URL, USER, PASS);
+        login.setVisible(true);
+        
     }
     
 }
