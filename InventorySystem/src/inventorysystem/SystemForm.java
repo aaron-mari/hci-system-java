@@ -1,6 +1,6 @@
 package inventorysystem;
 import java.sql.*;
-import javafx.scene.control.SelectionMode;
+//import javafx.scene.control.SelectionMode;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /*
@@ -30,7 +30,7 @@ public class SystemForm extends javax.swing.JFrame {
         this.dbUser = user;
         this.dbPass = pass;
         initComponents();
-        //load from the database
+        //load data from the database
         updateStocks();
         updateSuppliers();
     }
@@ -139,6 +139,11 @@ public class SystemForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSuppliers = new javax.swing.JTable();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        Logoff = new javax.swing.JMenuItem();
+        Quit = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
 
@@ -288,7 +293,12 @@ public class SystemForm extends javax.swing.JFrame {
         jButton2.setText("DELETE");
 
         jButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jButton3.setText("EDIT");
+        jButton3.setText("UPDATE");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jButton4.setText("SEARCH");
@@ -354,7 +364,6 @@ public class SystemForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblSuppliers.setEnabled(false);
         tblSuppliers.setName(""); // NOI18N
         tblSuppliers.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tblSuppliers);
@@ -397,6 +406,31 @@ public class SystemForm extends javax.swing.JFrame {
 
         jTabbedPane1.setSelectedComponent(tabStocks);
 
+        fileMenu.setText("File");
+
+        Logoff.setText("Logoff");
+        Logoff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogoffActionPerformed(evt);
+            }
+        });
+        fileMenu.add(Logoff);
+
+        Quit.setText("Quit");
+        Quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitActionPerformed(evt);
+            }
+        });
+        fileMenu.add(Quit);
+
+        jMenuBar1.add(fileMenu);
+
+        jMenu4.setText("Edit");
+        jMenuBar1.add(jMenu4);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -410,6 +444,28 @@ public class SystemForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void QuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitActionPerformed
+        int exit = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit Program?", JOptionPane.WARNING_MESSAGE);
+        if(exit==0) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_QuitActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        updateStocks();
+        updateSuppliers();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void LogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoffActionPerformed
+        // TODO add your handling code here:
+        int logoff = JOptionPane.showConfirmDialog(this, "Are you sure you want to logoff?", "Logoff", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(logoff==0) {
+            this.setVisible(false);
+            new LoginScreen(dbURL, dbUser, dbPass).setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_LogoffActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,11 +503,14 @@ public class SystemForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Logoff;
+    private javax.swing.JMenuItem Quit;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.JMenu fileMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -459,6 +518,8 @@ public class SystemForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -201,8 +201,8 @@ public class LoginScreen extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(dbURL, dbUser, dbPassword);
             st = con.prepareStatement("SELECT * FROM users WHERE username=? AND password=?");
-            st.setString(1, txtUser.getText());
-            st.setString(2, txtPass.getText());
+            st.setString(1, user);
+            st.setString(2, pass);
             rs = st.executeQuery();
             while(rs.next()){
                 String user_result, pass_result;
@@ -214,6 +214,7 @@ public class LoginScreen extends javax.swing.JFrame {
                     login = true;
                     this.setVisible(false);
                     new SystemForm(dbURL, dbUser,dbPassword).setVisible(true);
+                    this.dispose();
                 }
             }
         }
